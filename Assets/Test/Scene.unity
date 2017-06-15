@@ -169,7 +169,7 @@ Transform:
   m_PrefabParentObject: {fileID: 408690, guid: 4c034b133dc010a48938e8b857b75777, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 242253911}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.92387944, z: 0, w: -0.38268363}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -606,8 +606,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1786528825}
-  m_LocalRotation: {x: 0.14644659, y: 0.8535535, z: -0.35355344, w: 0.3535533}
-  m_LocalPosition: {x: -14, y: 19, z: 14}
+  m_LocalRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
+  m_LocalPosition: {x: 0, y: 19, z: -19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2072448015}
@@ -627,12 +627,11 @@ MonoBehaviour:
   zoomMin: -6
   zoomMax: 12
   zoomFactor: 0.1
-  cam: {fileID: 2072448015}
   zoomLerpFactor: 5
   zoomAdd: 2
-  posMin: {x: -20, y: 19, z: 10}
-  posMax: {x: -8, y: 19, z: 18}
-  dragFactor: 0.0025
+  posMin: {x: -5.5, y: 19, z: -24.5}
+  posMax: {x: 5.5, y: 19, z: -14.5}
+  dragFactor: 0.005
   lerpFactor: 4
   lerpMul: 10
 --- !u!1 &1827513913

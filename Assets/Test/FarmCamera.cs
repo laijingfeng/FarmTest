@@ -3,6 +3,11 @@ using System.Collections;
 
 public class FarmCamera : MonoBehaviour
 {
+    void Awake()
+    {
+        cam = this.transform.FindChild("MainCamera");
+    }
+
     void Update()
     {
         TryZoom();
@@ -13,12 +18,13 @@ public class FarmCamera : MonoBehaviour
 
     [Header("Zoom Settings")]
 
-    public float zoomMin = -1;
-    public float zoomMax = 1;
+    public float zoomMin = -6;
+    public float zoomMax = 12;
     public float zoomFactor = 0.1f;
-    public Transform cam;
-    public float zoomLerpFactor = 1f;
-    public float zoomAdd = 0f;
+    public float zoomLerpFactor = 5f;
+    public float zoomAdd = 2f;
+
+    private Transform cam;
 
     private Vector2 zoomLastPos0 = Vector3.zero;
     private Vector2 zoomLastPos1 = Vector3.zero;
@@ -63,7 +69,7 @@ public class FarmCamera : MonoBehaviour
 #if UNITY_EDITOR
         zoomOffset = Input.mousePosition.magnitude - (zoomLastPos0 - zoomLastPos1).magnitude;
 #else
-        zoomOffset = (Input.touches[0].position - Input.touches[1].position).magnitude - (zoomLastPos0 - zoomLastPos1).magnitude;
+            zoomOffset = (Input.touches[0].position - Input.touches[1].position).magnitude - (zoomLastPos0 - zoomLastPos1).magnitude;
 #endif
     }
 
@@ -77,8 +83,8 @@ public class FarmCamera : MonoBehaviour
         zoomLastPos0 = Input.mousePosition;
         zoomLastPos1 = Vector2.zero;
 #else
-        zoomLastPos0 = Input.touches[0].position;
-        zoomLastPos1 = Input.touches[1].position;
+            zoomLastPos0 = Input.touches[0].position;
+            zoomLastPos1 = Input.touches[1].position;
 #endif
     }
 
@@ -115,8 +121,8 @@ public class FarmCamera : MonoBehaviour
 
     [Header("Drag Settings")]
 
-    public Vector3 posMin = new Vector3(-18.28f, 19f, 11.66f);
-    public Vector3 posMax = new Vector3(-10.67f, 19f, 16.97f);
+    public Vector3 posMin = new Vector3(-5.5f, 19f, -24.5f);
+    public Vector3 posMax = new Vector3(5.5f, 19f, -14.5f);
 
     public float dragFactor = 0.005f;
     public float lerpFactor = 4f;
@@ -190,9 +196,11 @@ public class FarmCamera : MonoBehaviour
     public void DoDrag(Vector3 val, bool smooth = false)
     {
         Vector3 v2 = Vector3.zero;
-        v2.y = 0;
-        v2.x = (-val.x + val.y) * 1.414f;
-        v2.z = (-val.x - val.y) * 1.414f;
+        //v2.y = 0;
+        //v2.x = (-val.x + val.y) * 1.414f;
+        //v2.z = (-val.x - val.y) * 1.414f;
+        v2.z = val.y;
+        v2.x = val.x;
 
         //Debug.LogWarning("val=" + val + " v2=" + v2);
 
@@ -232,7 +240,7 @@ public class FarmCamera : MonoBehaviour
         if (Input.GetKey(KeyCode.Z)
             && Input.GetMouseButton(0))
 #else
-        if (Input.touchCount > 1)
+            if (Input.touchCount > 1)
 #endif
         {
             return true;
@@ -263,10 +271,10 @@ public class FarmCamera : MonoBehaviour
     {
         Vector3 pos = Input.mousePosition;
 #if (UNITY_ANDROID || UNITY_IPHONE) && !UNITY_EDITOR
-        if(Input.touchCount > 0)
-        {
-            pos = Input.touches[0].position;
-        }
+            if(Input.touchCount > 0)
+            {
+                pos = Input.touches[0].position;
+            }
 #endif
         return pos;
     }
